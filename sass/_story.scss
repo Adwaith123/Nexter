@@ -1,0 +1,61 @@
+//Here we learn  overlapping-grid-items , why images behave differently than other items,how to decide grid vs flexbox in certain senarios
+
+.story {
+  &__pictures {
+    background-image: linear-gradient(
+        rgba($color-primary, 0.5),
+        rgba($color-primary, 0.5)
+      ),
+      url(../img/back.jpg);
+
+    background-color: $color-primary;
+    grid-column: full-start/col-end 4;
+
+    display: grid;
+    //Creating a 6*6 cell for making equal spaces around the image for rows as well as columns
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center; //To overcome images default behaviour
+  }
+
+  &__img--1 {
+    width: 100%;
+    grid-row: 2/6;
+    grid-column: 2/6;
+    box-shadow: 0 2rem 5rem rgba(#000, 0.3);
+  }
+  &__img--2 {
+    width: 120%; // Making images extend to the nearby container..
+
+    grid-row: 4/6;
+    grid-column: 4/7;
+
+    z-index: 20;
+    box-shadow: 0 2rem 5rem rgba(#000, 0.4);
+  }
+  &__content {
+    background-color: $color-grey-light-1;
+    grid-column: col-end 4 / full-end;
+
+    padding: 6rem 8vw; //settig padding in vw with respective with changing width before : 6rem 12rem
+
+    // Using flexbox along with grid
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items is used to correct the length of the button that is stretched all the way
+    align-items: flex-start;
+
+    /*if we use grid
+     display:grid;
+     align-items:center;
+     justify-items:start;
+    */
+  }
+  //story__text beome direct children
+  &__text {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 4rem;
+  }
+}
